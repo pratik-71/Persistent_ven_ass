@@ -1,8 +1,14 @@
-# React + Vite
+Hello Persistent Venture,
+Thank you for the wonderful assignment.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Apologies for the delay; I am 2 hours late. I wasn't able to deliver this within 24 hours as I read the email quite late.
 
-Currently, two official plugins are available:
+Setup:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Open the terminal and run the  command - https://github.com/pratik-71/Persistent_ven_ass.git
+after that run - npm init
+This will download all the necessary packages, and you are good to go.
+to run project run command - npm run dev
+
+
+Thank you!
