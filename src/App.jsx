@@ -3,6 +3,7 @@ import Navbar from "./common/Navbar";
 import Home from "./components/Home";
 import InputForm from "./components/InputForm";
 import NavbarCondition from "./common/NavbarCondition";
+import User from "./components/User";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/form" element={<InputForm />} />
+          <Route path="/user/:index" element={<User />} />
         </Routes>
       </BrowserRouter>
     </>

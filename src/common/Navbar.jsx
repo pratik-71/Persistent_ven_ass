@@ -4,16 +4,43 @@ import { FiServer } from "react-icons/fi";
 import { FaBars } from "react-icons/fa6";
 import { IoMdClose } from "react-icons/io";
 import logo from "../assets/icons/logo.svg"
+import { imageData } from "../Data/users";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [showsearch, setshowsearch] = useState(false);
-  const searchRef = useRef(null);
-  const searchCloseRef = useRef(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredUsers, setFilteredUsers] = useState([]);
+  const navigate = useNavigate()
+   
+  const handleLinkClick = (userIndex) => {
+    setshowsearch(false);
+    navigate(`/user/${userIndex}`);
+  };
+
+  const handleSearchChange = (e) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+
+    if (query.trim()) {
+      const filtered = imageData.filter((user) => {
+        return (
+          user.name.toLowerCase().includes(query.toLowerCase()) ||
+          user.bio.toLowerCase().includes(query.toLowerCase()) ||
+          user.country.toLowerCase().includes(query.toLowerCase()) ||
+          user.website.toLowerCase().includes(query.toLowerCase())
+        );
+      });
+      setFilteredUsers(filtered);
+    } else {
+      setFilteredUsers([]);
+    }
+  };
 
   return (
-    <div className="fixed top-0 w-full bg-opacity-80 backdrop-blur-md text-white shadow-lg">
+    <div className="fixed top-0 w-full  bg-gradient-to-t from-transparent to-black/90  text-white z-50">
       <div className="container mx-auto flex justify-between items-center py-4 px-12">
-        <div className="flex gap-12 justify-center items-center">
+        <div className="flex gap-12 justify-center items-center z-50">
         
          <img src={logo}/>
 
@@ -50,6 +77,7 @@ const Navbar = () => {
                     <IoIosSearch className="text-amber-900 text-3xl" />
                     <input
                       type="text"
+                      onChange={handleSearchChange}
                       placeholder="Search..."
                       className=" px-3 w-96 rounded-2xl bg-white text-amber-900 outline-none"
                     />
@@ -60,6 +88,18 @@ const Navbar = () => {
                       />
                     </button>
                   </button>
+
+                  {filteredUsers.length > 0 && (
+                <div className="mt-4 bg-white text-black rounded-lg w-full p-2 max-h-60 overflow-auto">
+                  {filteredUsers.map((user, index) => (
+                    <div onClick={()=>handleLinkClick(user.index)} key={index} className="py-2 border-b w-full border-gray-300">
+                      <div className="font-semibold text-gray-700 cursor-pointer">E1 / {user.name}</div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+
                 </div>
               </div>
             )}
