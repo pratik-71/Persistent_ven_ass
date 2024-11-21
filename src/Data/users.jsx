@@ -5,6 +5,17 @@ import aine_corrigan from "../assets/Images/aine_corrigan.avif";
 import alberto_gracia from "../assets/Images/alberto_garcia.jpg";
 import alex_rosenthal from "../assets/Images/alexa_rosenthal.jpg";
 import alexzender_winter from "../assets/Images/alexzender_winter.avif";
+import alexander_Fairman from "../assets/Images/alexander_Fairman.avif";
+import alexandra_pimor from "../assets/Images/alexandra_pimor.avif";
+import alli_daltron from "../assets/Images/alli_daltron.avif";
+import andrew_smyth from "../assets/Images/andrew_smyth.avif";
+import anushuman_bapna from "../assets/Images/anushuman_bapna.avif";
+import blake_brinker from "../assets/Images/blake_brinker.avif";
+import brian_harris from "../assets/Images/brian_harris.avif";
+import cameron_colquhoun from "../assets/Images/cameron_colquhoun.avif";
+import chelesa_poling from "../assets/Images/chelesa_poling.avif";
+// import evam_steiner from "../assets/Images/evam_steiner.avif";
+
 
 export const imageData = [
   {
@@ -115,5 +126,125 @@ export const imageData = [
     offer: `I offer cutting-edge solutions for integrating technology with design to create immersive experiences for users.`,
     Need: `I am seeking partnerships with tech firms and design agencies to collaborate on next-generation digital experiences.`,
     CallToAction: "Let’s innovate together!"
-  }
+  },{
+    index: 8,
+    name: "Alexander Fairman",
+    image: alexander_Fairman,
+    country: "Canada",
+    company: "Fairman Innovations",
+    position: "Chief Strategist",
+    location: "Toronto, Canada",
+    website: "www.fairmaninnovations.com",
+    nationality: "Canadian",
+    bio: `Alexander Fairman is a strategic leader specializing in innovation management and organizational growth. His work focuses on helping businesses adapt to changing market dynamics while maintaining operational excellence.`,
+    offer: `I provide strategic consulting services that enable organizations to innovate effectively and achieve long-term success.`,
+    Need: `I am looking for partnerships with organizations in the tech and finance sectors to explore new opportunities for growth and development.`,
+    CallToAction: "Let’s strategize your success!"
+},
+{
+    index: 9,
+    name: "Alexandra Pimor",
+    image: alexandra_pimor,
+    country: "France",
+    company: "Pimor Designs",
+    position: "Artistic Director",
+    location: "Paris, France",
+    website: "www.pimordesigns.com",
+    nationality: "French",
+    bio: `Alexandra Pimor is an artistic visionary based in Paris. Her work revolves around creating immersive installations and avant-garde designs that push the boundaries of art and functionality.`,
+    offer: `I offer artistic direction and conceptual design services that bring unique visions to life.`,
+    Need: `I am seeking collaborators in the fields of art, fashion, and architecture to co-create groundbreaking projects.`,
+    CallToAction: "Create the extraordinary with me!"
+},
+{
+    index: 10,
+    name: "Alli Daltron",
+    image: alli_daltron,
+    country: "Australia",
+    company: "Daltron Creative Studio",
+    position: "Creative Innovator",
+    location: "Sydney, Australia",
+    website: "www.daltroncreative.com",
+    nationality: "Australian",
+    bio: `Alli Daltron is a creative innovator whose projects focus on digital storytelling and experiential design. Based in Sydney, her work bridges the gap between technology and artistic expression.`,
+    offer: `I provide innovative solutions for storytelling, specializing in virtual and augmented reality experiences.`,
+    Need: `I am looking for partnerships with tech and entertainment companies to pioneer new frontiers in digital storytelling.`,
+    CallToAction: "Let’s build the future of storytelling!"
+},{
+  index: 11,
+  name: "Andrew Smyth",
+  image: andrew_smyth,
+  country: "USA",
+  company: "Smyth Ventures",
+  position: "Founder & Investor",
+  location: "San Francisco, California, USA",
+  website: "www.smythventures.com",
+  nationality: "American",
+  bio: `Andrew Smyth is a venture capitalist and entrepreneur passionate about fostering innovation in tech startups. His focus is on empowering new businesses with strategic investments and mentorship.`,
+  offer: `I provide funding and mentorship to early-stage startups in the technology and sustainability sectors.`,
+  Need: `I am seeking connections with entrepreneurs and researchers developing groundbreaking technologies.`,
+  CallToAction: "Let's innovate together!"
+},
+{
+  index: 12,
+  name: "Anushuman Bapna",
+  image: anushuman_bapna,
+  country: "India",
+  company: "Bapna Solutions",
+  position: "Innovation Consultant",
+  location: "Bangalore, India",
+  website: "www.bapnasolutions.com",
+  nationality: "Indian",
+  bio: `Anushuman Bapna is a tech innovator and strategist with a focus on integrating AI into everyday business solutions. He works to create meaningful applications that simplify complex problems.`,
+  offer: `I offer AI-powered solutions tailored to optimize business operations and enhance customer experiences.`,
+  Need: `I am looking for collaborations with businesses seeking to harness the power of artificial intelligence.`,
+  CallToAction: "Empower your business with AI!"
+},
+{
+  index: 13,
+  name: "Blake Brinker",
+  image: blake_brinker,
+  country: "USA",
+  company: "Brinker Design Co.",
+  position: "Lead Designer",
+  location: "Austin, Texas, USA",
+  website: "www.brinkerdesign.co",
+  nationality: "American",
+  bio: `Blake Brinker is a creative force in product design and user experience. He combines functionality with aesthetics to create designs that resonate with users.`,
+  offer: `I specialize in UX/UI design and product development for startups and established companies.`,
+  Need: `I am looking for partnerships with innovators in the tech and consumer product industries to create impactful solutions.`,
+  CallToAction: "Let’s design for impact!"
+},
+{
+  index: 14,
+  name: "Cameron Colquhoun",
+  image: cameron_colquhoun,
+  country: "UK",
+  company: "Colquhoun Analytics",
+  position: "Data Scientist & Founder",
+  location: "London, UK",
+  website: "www.colquhounanalytics.com",
+  nationality: "British",
+  bio: `Cameron Colquhoun is a data scientist and entrepreneur dedicated to using data to solve real-world problems. His work spans predictive analytics, AI, and data-driven policy-making.`,
+  offer: `I provide advanced data analytics solutions to organizations looking to leverage data for growth and efficiency.`,
+  Need: `I am seeking collaborations with public and private organizations aiming to make data-driven decisions.`,
+  CallToAction: "Unlock the power of data!"
+},
+{
+  index: 15,
+  name: "Chelsea Poling",
+  image: chelesa_poling,
+  country: "Canada",
+  company: "Poling Studios",
+  position: "Artistic Innovator",
+  location: "Vancouver, Canada",
+  website: "www.polingstudios.com",
+  nationality: "Canadian",
+  bio: `Chelsea Poling is a multidisciplinary artist known for her work in mixed media and contemporary installations. Her projects often explore themes of identity and social change.`,
+  offer: `I create immersive art installations and collaborate on projects that push the boundaries of traditional art forms.`,
+  Need: `I am looking for opportunities to showcase my work internationally and collaborate with other visionary artists.`,
+  CallToAction: "Discover the art of the future!"
+}
+
+
 ];

@@ -48,6 +48,13 @@ const InputForm = () => {
     );
   };
 
+  const [showFullText, setShowFullText] = useState(false);
+
+  const handleToggleText = () => {
+    setShowFullText(prevState => !prevState);
+  };
+
+
   // Handle selecting a guild
   const handleSelect = (guild) => {
     if (selectedGuilds.length < 3 && !selectedGuilds.includes(guild)) {
@@ -187,10 +194,18 @@ const InputForm = () => {
   return (
     <div className="flex font-Cormorant flex-col justify-center items-center bg-[#252A30]">
       <div className="flex items-center w-full justify-between px-4 py-4 border-b-[0.2px] border-gray-500">
+
+       {currentStep == 1 && (
+          <button
+          className="text-xl text-gray-100 cursor-pointer rounded-full bg-gray-500 px-4  py-2 hover:bg-blue-500 hover:scale-110 duration-150">
+           Home 
+          </button>
+        )}
+
         {currentStep > 1 && (
           <IoMdArrowRoundBack
             onClick={() => setCurrentStep(currentStep - 1)}
-            className="text-3xl text-gray-100 cursor-pointer"
+            className="text-4xl text-gray-100 cursor-pointer rounded-full bg-gray-500 p-2 hover:bg-blue-500 hover:scale-110 duration-150"
           />
         )}
         <div className="flex justify-center items-center w-full">
@@ -202,23 +217,23 @@ const InputForm = () => {
               <span
                 className={`w-8 h-8 rounded-full ${
                   i + 1 <= currentStep
-                    ? "border-[#6D6049] border-2 text-white"
+                    ? "border-green-600 border-2 text-white"
                     : "border-2 border-gray-500"
                 } flex items-center justify-center`}
               >
                 {i + 1 == currentStep && (
-                  <div className="flex items-center justify-center bg-[#6D6049] rounded-full w-3 h-3"></div>
+                  <div className="flex items-center justify-center bg-green-600 rounded-full w-3 h-3"></div>
                 )}
                 {i + 1 < currentStep && (
-                  <div className="flex items-center justify-center bg-[#6D6049] rounded-full w-full h-full">
+                  <div className="flex items-center justify-center bg-green-600 rounded-full w-full h-full">
                     <TiTick className="text-white" />
                   </div>
                 )}
               </span>
 
               <p
-                className={`text-md ${
-                  i + 1 <= currentStep ? "text-[#6D6049]" : "text-[#4d5663]"
+                className={`text-xl ${
+                  i + 1 <= currentStep ? "text-green-600" : "text-[#4d5663]"
                 }`}
               >
                 {steps[i]}
@@ -239,12 +254,12 @@ const InputForm = () => {
       </div>
 
       {currentStep === 1 && (
-        <div className="flex flex-col w-1/2 min-h-[91vh]  items-start  gap-8 ">
-          <div className="flex w-full items-center justify-center py-24">
+        <div className="flex flex-col w-1/2 min-h-[91vh]  items-center  gap-8 ">
+          <div className="flex w-full items-center justify-center py-24 scale-150">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="100"
-              height="99"
+              height="100"
               fill="none"
             >
               <g fill="#6D6049" clip-path="url(#a)">
@@ -259,7 +274,7 @@ const InputForm = () => {
             </svg>
           </div>
 
-          <p className="text-2xl text-gray-100 font-medium ">
+          <p className="text-3xl text-gray-100 font-semibold ">
             Atlantic Crossing Traveler Intake Form
           </p>
 
@@ -272,260 +287,258 @@ const InputForm = () => {
 
           <button
             onClick={handleNextClick}
-            className="rounded-3xl text-gray-100 px-4 py-2 bg-[#6D6049] hover:border-2 hover:border-white"
+            className="rounded-3xl text-xl text-gray-100 px-4 py-2 bg-[#6D6049] hover:border-2 hover:border-white duration-100"
           >
             Begin
           </button>
         </div>
       )}
 
-      {currentStep === 2 && stepsublevel2 == false && (
-        <form
-          onSubmit={handleSubmit(onNext_1)}
-          className="flex font-Cormorant flex-col w-1/2 items-start justify-center gap-8 py-12 px-6 "
-        >
-          {/* First Name Input Feild */}
-          <div className="flex flex-col items-start w-full gap-2 text-gray-200">
-            <p>Full Name</p>
-            <input
-              type="text"
-              {...register("fullName", {
-                required: "Full name is required!",
-              })}
-              className="w-full bg-[#373d45] py-2 px-2 rounded-lg border-[1px] border-gray-500"
-            />
-
-            {errors.fullName && (
-              <div className="flex items-center gap-1">
-                <MdError className="text-red-700 text-sm" />
-                <p className="text-red-500 text-sm">
-                  {errors.fullName.message}
-                </p>
-              </div>
-            )}
-          </div>
-
-          {/* Email * Input Feild */}
-          <div className="flex flex-col items-start w-full gap-2 text-gray-200">
-            <p>Email *</p>
-            <input
-              type="email"
-              {...register("email", {
-                required: "Email is required!",
-              })}
-              className="w-full px-2 bg-[#373d45] py-2 rounded-lg border-[1px] border-gray-500"
-            />
-
-            {errors.email && (
-              <div className="flex items-center gap-1">
-                <MdError className="text-red-700 text-sm" />
-                <p className="text-red-500 text-sm">{errors.email.message}</p>
-              </div>
-            )}
-          </div>
-
-          {/* whatsapp Input Feild */}
-          <div className="flex flex-col items-start w-full gap-2 text-gray-200">
-            <p>Whatsapp Phone Number</p>
-            <input
-              type="number"
-              {...register("Whatsapp", {
-                required: "Whatsapp Number is required!",
-              })}
-              className="w-full px-2 bg-[#373d45] py-2 rounded-lg border-[1px] border-gray-500"
-            />
-
-            {errors.Whatsapp && (
-              <div className="flex items-center gap-1 ">
-                <MdError className="text-red-700 text-sm" />
-                <p className="text-red-500 text-sm">
-                  {errors.Whatsapp.message}
-                </p>
-              </div>
-            )}
-          </div>
-
-          {/* Gender */}
-          <div className="flex flex-col gap-2 text-gray-200 w-full">
-            <label>Gender</label>
-
-            <div className="flex flex-col items-start gap-4">
-              <label className="flex items-center w-40 px-4 py-2  rounded-xl border-[1px] border-gray-700 bg-[#373d45]">
-                <input
-                  type="radio"
-                  value="Male"
-                  {...register("gender", { required: "Gender is required" })}
-                  className="mr-2 "
-                />
-                Male
-              </label>
-
-              <label className="flex items-center w-40 px-4 py-2  rounded-xl border-[1px] border-gray-700 bg-[#373d45]">
-                <input
-                  type="radio"
-                  value="Female"
-                  {...register("gender", { required: "Gender is required" })}
-                  className="mr-2"
-                />
-                Female
-              </label>
-
-              <label className="flex items-center w-40 px-4 py-2  rounded-xl border-[1px] border-gray-700 bg-[#373d45]">
-                <input
-                  type="radio"
-                  value="Non-binary"
-                  {...register("gender", { required: "Gender is required" })}
-                  className="mr-2"
-                />
-                Non-binary
-              </label>
-            </div>
-
-            {errors.gender && (
-              <div className="flex items-center gap-2 mt-2">
-                <MdError className="text-red-700 text-sm" />
-                <p className="text-red-500 text-sm">{errors.gender.message}</p>
-              </div>
-            )}
-          </div>
-
-          {/* Natinality input Feild */}
-          <div className="flex flex-col items-start w-full gap-2 text-gray-200">
-            <div>
-              <p>Nationality</p>
-              <p className="text-sm text-gray-500">
-                Which passport(s) do you hold? We must give this information to
-                the Ritz-Carlton.{" "}
-              </p>
-            </div>
-            <input
-              type="text"
-              {...register("Nationality", {
-                required: "Nationality Number is required!",
-              })}
-              className="w-full px-2 bg-[#373d45] py-2 rounded-lg border-[1px] border-gray-500"
-            />
-
-            {errors.Nationality && (
-              <div className="flex items-center gap-1 ">
-                <MdError className="text-red-700 text-sm" />
-                <p className="text-red-500 text-sm">
-                  {errors.Nationality.message}
-                </p>
-              </div>
-            )}
-          </div>
-
-          <button
-            type="submit"
-            className="rounded-3xl text-gray-100 px-4 py-2 bg-[#6D6049] hover:border-2 hover:border-white"
-          >
-            Start
-          </button>
-        </form>
+      {currentStep === 2 && stepsublevel2 === false && (
+  <form
+    onSubmit={handleSubmit(onNext_1)}
+    className="flex font-Cormorant flex-col md:w-3/4 lg:w-1/2 items-start justify-center gap-8 py-10 px-6 bg-[#33373e] rounded-xl shadow-lg my-4"
+  >
+    {/* Full Name Input Field */}
+    <div className="flex flex-col items-start w-full gap-2 text-gray-200 ">
+      <h1 className="text-4xl font-extrabold font-Cormorant w-full text-center">Personal Details</h1>
+      <p>Full Name</p>
+      <input
+        type="text"
+        {...register("fullName", {
+          required: "Full name is required!",
+        })}
+        className="w-full bg-[#373d45] py-2 px-4 rounded-lg border-[1px] border-gray-500"
+      />
+      {errors.fullName && (
+        <div className="flex items-center gap-1">
+          <MdError className="text-red-700 text-sm" />
+          <p className="text-red-500 text-sm">{errors.fullName.message}</p>
+        </div>
       )}
+    </div>
 
-      {stepsublevel2 && (
-        <form
-          onSubmit={handleSubmit(onNext_2)}
-          className="py-16 bg-[#252A30] w-1/2 flex flex-col items-start justify-center gap-8"
-        >
-          <p className="text-2xl text-gray-200">Build Your Profile</p>
-          <p className="text-2xl text-gray-200">Lets Connect</p>
-          <p className="text-sm text-gray-200">
-            For each social media profile you'd like to share with others,
-            please copy & paste your profile URL below:
+    {/* Email Input Field */}
+    <div className="flex flex-col md:flex-row items-start w-full gap-4 text-gray-200">
+      <div className="flex-1">
+        <p>Email *</p>
+        <input
+          type="email"
+          {...register("email", {
+            required: "Email is required!",
+          })}
+          className="w-full px-4 bg-[#373d45] py-2 rounded-lg border-[1px] border-gray-500"
+        />
+        {errors.email && (
+          <div className="flex items-center gap-1">
+            <MdError className="text-red-700 text-sm" />
+            <p className="text-red-500 text-sm">{errors.email.message}</p>
+          </div>
+        )}
+      </div>
+
+      {/* Whatsapp Input Field */}
+      <div className="flex-1">
+        <p>Whatsapp Phone Number</p>
+        <input
+          type="number"
+          {...register("Whatsapp", {
+            required: "Whatsapp Number is required!",
+          })}
+          className="w-full px-4 bg-[#373d45] py-2 rounded-lg border-[1px] border-gray-500"
+        />
+        {errors.Whatsapp && (
+          <div className="flex items-center gap-1">
+            <MdError className="text-red-700 text-sm" />
+            <p className="text-red-500 text-sm">{errors.Whatsapp.message}</p>
+          </div>
+        )}
+      </div>
+    </div>
+
+    {/* Gender Input */}
+    <div className="flex flex-col md:flex-row gap-4 text-gray-200 w-full">
+      <label className="flex items-center gap-4 w-full md:w-1/3 px-4 py-2 rounded-xl border-[1px] border-gray-700 bg-[#373d45]">
+        <input
+          type="radio"
+          value="Male"
+          {...register("gender", { required: "Gender is required" })}
+          className="mr-2"
+        />
+        Male
+      </label>
+
+      <label className="flex items-center gap-4 w-full md:w-1/3 px-4 py-2 rounded-xl border-[1px] border-gray-700 bg-[#373d45]">
+        <input
+          type="radio"
+          value="Female"
+          {...register("gender", { required: "Gender is required" })}
+          className="mr-2"
+        />
+        Female
+      </label>
+
+      <label className="flex items-center gap-4 w-full md:w-1/3 px-4 py-2 rounded-xl border-[1px] border-gray-700 bg-[#373d45]">
+        <input
+          type="radio"
+          value="Non-binary"
+          {...register("gender", { required: "Gender is required" })}
+          className="mr-2"
+        />
+        Non-binary
+      </label>
+    </div>
+    {errors.gender && (
+      <div className="flex items-center gap-2 mt-2">
+        <MdError className="text-red-700 text-sm" />
+        <p className="text-red-500 text-sm">{errors.gender.message}</p>
+      </div>
+    )}
+
+    {/* Nationality Input Field */}
+    <div className="flex flex-col items-start w-full gap-2 text-gray-200">
+      <div>
+        <p>Nationality</p>
+        <p className="text-sm text-gray-200">
+         ( Which passport(s) do you hold? We must give this information to
+          the Ritz-Carlton.{" "}) 
+        </p>
+      </div>
+      <input
+        type="text"
+        {...register("Nationality", {
+          required: "Nationality Number is required!",
+        })}
+        className="w-full px-4 bg-[#373d45] py-2 rounded-lg border-[1px] border-gray-500"
+      />
+      {errors.Nationality && (
+        <div className="flex items-center gap-1">
+          <MdError className="text-red-700 text-sm" />
+          <p className="text-red-500 text-sm">{errors.Nationality.message}</p>
+        </div>
+      )}
+    </div>
+
+    {/* Submit Button */}
+    <div className="flex items-ceter justify-center w-full">
+    <button
+      type="submit"
+      className="rounded-3xl  text-gray-100 px-8 py-3 bg-[#6D6049] hover:border-2 hover:border-white mt-6 text-xl"
+    >
+      Start
+    </button>
+    </div>
+  </form>
+        )}
+
+{stepsublevel2 && (
+  <form
+    onSubmit={handleSubmit(onNext_2)}
+    className="py-12 my-4 shadow-2xl px-4 bg-[#33383e] w-full sm:w-1/2 flex flex-col items-center justify-center gap-6"
+  >
+    <p className="text-4xl text-gray-200 text-center font-extrabold">LETS CONNECT</p>
+    <p className="text-sm text-gray-200">
+      For each social media profile you'd like to share with others,
+    </p>
+
+    {/* Instagram & X Input Fields in One Row */}
+    <div className="flex w-full gap-4">
+      {/* Instagram Input Field */}
+      <div className="flex flex-col items-start w-full sm:w-1/2 gap-2 text-gray-200">
+        <p>Instagram Profile URL</p>
+        <input
+          type="text"
+          placeholder="https://www.instagram.com/lost.in.mountains_/"
+          {...register("Instagram")}
+          className="w-full bg-[#373d45] py-2 px-2 rounded-lg border-[1px] border-gray-500"
+        />
+      </div>
+
+      {/* X Input Field */}
+      <div className="flex flex-col items-start w-full sm:w-1/2 gap-2 text-gray-200">
+        <p>X Profile URL</p>
+        <input
+          type="text"
+          placeholder="https://www.X.com/lost.in.mountains_/"
+          {...register("X")}
+          className="w-full bg-[#373d45] py-2 px-2 rounded-lg border-[1px] border-gray-500"
+        />
+      </div>
+    </div>
+
+    {/* Linkedin Input Field */}
+    <div className="flex flex-col items-start w-full gap-2 text-gray-200">
+      <p>Linkedin Profile URL</p>
+      <input
+        type="text"
+        placeholder="https://www.Linkedin.com/lost.in.mountains_/"
+        {...register("Linkedin")}
+        className="w-full bg-[#373d45] py-2 px-2 rounded-lg border-[1px] border-gray-500"
+      />
+    </div>
+
+    <span className="h-[1px] w-full bg-gray-600"></span>
+
+    {/* Checkboxes in One Row */}
+    <div className="flex gap-4 w-full">
+      <div className="flex gap-2 items-center w-full sm:w-1/3">
+        <input
+          type="checkbox"
+          {...register("contact_me")}
+          className="mr-2"
+        />
+        <div className="flex flex-col">
+          <p className="text-md text-gray-200">Contact me</p>
+          <p className="text-sm text-gray-400">
+            I’m open to having other participants contact me. If checked,
+            we’ll share your email and WhatsApp number with confirmed
+            participants.
           </p>
+        </div>
+      </div>
 
-          {/* Instagram Input Feild */}
-          <div className="flex flex-col items-start w-full gap-2 text-gray-200">
-            <p>Instagram Profile URL</p>
-            <input
-              type="text"
-              placeholder="https://www.instagram.com/lost.in.mountains_/"
-              {...register("Instagram")}
-              className="w-full bg-[#373d45] py-2 px-2 rounded-lg border-[1px] border-gray-500"
-            />
-          </div>
+      <div className="flex gap-2 items-center w-full sm:w-1/3">
+        <input
+          type="checkbox"
+          {...register("feature_me")}
+          className="mr-2"
+        />
+        <div className="flex flex-col">
+          <p className="text-md text-gray-200">Feature Me</p>
+          <p className="text-sm text-gray-400">
+            Are you okay with being featured on the Earth One website and/or
+            newsletter? We love to celebrate the remarkable individuals in
+            our ecosystem.
+          </p>
+        </div>
+      </div>
 
-          {/* X Input Feild */}
-          <div className="flex flex-col items-start w-full gap-2 text-gray-200">
-            <p>X Profile URL</p>
-            <input
-              type="text"
-              placeholder="https://www.X.com/lost.in.mountains_/"
-              {...register("X")}
-              className="w-full bg-[#373d45] py-2 px-2 rounded-lg border-[1px] border-gray-500"
-            />
-          </div>
+      <div className="flex gap-2 items-center w-full sm:w-1/3">
+        <input
+          type="checkbox"
+          {...register("hide_me")}
+          className="mr-2"
+        />
+        <div className="flex flex-col">
+          <p className="text-md text-gray-200">Hide Me</p>
+          <p className="text-sm text-gray-400">
+            Check this box if you do NOT want to be displayed on the
+            internal Alliance Directory for Atlantic Crossing passengers
+          </p>
+        </div>
+      </div>
+    </div>
 
-          {/* Linkedin Input Feild */}
-          <div className="flex flex-col items-start w-full gap-2 text-gray-200">
-            <p>Linkedin Profile URL</p>
-            <input
-              type="text"
-              placeholder="https://www.Linkedin.com/lost.in.mountains_/"
-              {...register("Linkedin")}
-              className="w-full bg-[#373d45] py-2 px-2 rounded-lg border-[1px] border-gray-500"
-            />
-          </div>
+    <button
+      type="submit"
+      className="rounded-3xl text-gray-100 px-4 py-2 bg-[#6D6049] hover:border-2 hover:border-white"
+    >
+      Next
+    </button>
+  </form>
+)}
 
-          <span className="h-[1px] w-full bg-gray-600"></span>
-          <span className="h-[1px] w-full bg-gray-600"></span>
 
-          <div className="flex gap-2">
-            <input
-              type="checkbox"
-              {...register("contact_me")}
-              className="mr-2"
-            />
-            <div className="flex flex-col  ">
-              <p className="text-md text-gray-200">Contact me</p>
-              <p className="text-sm text-gray-400 ">
-                I’m open to having other participants contact me. If checked,
-                we’ll share your email and WhatsApp number with confirmed
-                participants.
-              </p>
-            </div>
-          </div>
-
-          <div className="flex gap-2">
-            <input
-              type="checkbox"
-              {...register("feature_me")}
-              className="mr-2"
-            />
-            <div className="flex flex-col  ">
-              <p className="text-md text-gray-200">Feature Me</p>
-              <p className="text-sm text-gray-400 ">
-                Are you okay with being featured on the Earth One website and/or
-                newsletter? We love to celebrate the remarkable individuals in
-                our ecosystem.
-              </p>
-            </div>
-          </div>
-
-          <div className="flex gap-2">
-            <input type="checkbox" {...register("hide_me")} className="mr-2" />
-            <div className="flex flex-col  ">
-              <p className="text-md text-gray-200">Hide Me</p>
-              <p className="text-sm text-gray-400 ">
-                Check this box if you do NOT want to be displayed on the
-                internal Alliance Directory for Atlantic Crossing passengers
-                (https://earthone.world/alliance). Note that changes to this
-                field will not
-              </p>
-            </div>
-          </div>
-
-          <button
-            type="submit"
-            className="rounded-3xl text-gray-100 px-4 py-2 bg-[#6D6049] hover:border-2 hover:border-white"
-          >
-            Next
-          </button>
-        </form>
-      )}
 
       {currentStep === 3 && (
         <form
@@ -602,9 +615,9 @@ const InputForm = () => {
       {currentStep === 4 && (
         <form
           onSubmit={handleSubmit(onNext_4)}
-          className="py-16 bg-[#252A30] w-1/2 flex flex-col items-start justify-center gap-8"
+          className="py-8 rounded-xl px-8 my-4  bg-[#31373e] w-1/2 flex flex-col items-center justify-center gap-8 shadow-2xl"
         >
-          <p className="text-2xl text-gray-200">Your Input</p>
+          <p className="text-4xl  font-extrabold text-gray-200">Your Input</p>
           <p className="text-md text-gray-200">
             These final questions help us design the Atlantic Crossing with you
             in mind. This section is optional, but encouraged!
@@ -659,197 +672,197 @@ const InputForm = () => {
             />
           </div>
 
-          <p className="text-md text-gray-500">
-            If you have any additional questions please email
-            aine@earthoneworld.com
-          </p>
-
           <button
             type="submit"
-            className="rounded-3xl text-gray-100 px-4 py-2 bg-[#6D6049] hover:border-2 hover:border-white"
+            className="rounded-3xl text-2xl text-gray-100 px-4 py-2 bg-[#6D6049] hover:border-2 hover:border-white"
           >
             Next
           </button>
         </form>
       )}
 
-      {currentStep === 5 && (
-        <form
-          onSubmit={handleSubmit(onNext_5)}
-          className="py-16 bg-[#252A30] w-1/2 flex flex-col items-start justify-center gap-8"
-        >
-          <p className="text-2xl text-gray-200">Guidelines and Values</p>
-          <p className="text-md text-gray-200">
-            These are ways of operating that we are in agreement of. We model
-            the world we want to create together. A core principle of Earth One
-            is regenerosity — the recognition that generosity begets generosity.
-            Our central purpose here is initiating cycles of regenerosity that
-            ripple through our communities, cultures and beyond. We believe in
-            the practice of devoting one's gifts in service of the whole. Our
-            gatherings make space for co-creation and co-development, constantly
-            learning from one another's mastery while we combine our gifts
-            through collective action. We are dedicated to creating a safe,
-            respectful, and enriching environment for all participants. By
-            signing this consent form, you agree to uphold the following
-            guidelines and values: Open-Mindedness, Curiosity & Learning:
-            Embrace diversity in perspectives, experiences, and expressions. Be
-            willing to engage with ideas, world views, and practices that may be
-            new or different to you. Approach interactions and activities with
-            an inquisitive and eager mindset. Seek to learn and understand more
-            about yourself and others. Encourage continuous learning and
-            development. Inclusivity & Collaboration: Ensure that everyone feels
-            welcome and represented. Strive to include all voices and
-            perspectives. Foster teamwork and cooperative efforts. Work together
-            to create a positive and inclusive atmosphere. Set the intention to
-            meet new collaborators and form unlikely partnerships. Integrity, &
-            Consent: Value all participants and their contributions. Treat
-            everyone with dignity and honor. Earth One has a zero tolerance
-            policy for any form of sexual harassment. The way we treat ourselves
-            and others in intimate spaces is a reflection of how we show up in
-            the world. Act with honesty and sincerity. Uphold your personal and
-            professional commitments and be accountable for your actions.
-            Respect & Consideration: This includes punctuality. Respect the time
-            and schedules of others. Everything is opt-in, but please honor the
-            commitments you make and show up with full attention and presence to
-            the moments you choose. Respect the privacy and confidentiality of
-            all participants. Do not share personal or proprietary information
-            without consent. Contribution & Generosity: Share your time,
-            attention, and resources freely and with kindness. Offer support and
-            encouragement to fellow participants. Uplift each other in our
-            shared mission for Earth and humanity with the mindset that we are
-            all on the same team and we know we need to break down silos as well
-            as systems of competition. Environmental Stewardship: Leave all
-            spaces better than you found them. Be mindful of cleanliness, order,
-            and the impact of your actions on the environment. Promote
-            environmentally friendly practices. Community Spirit & Fun: Foster a
-            sense of belonging and togetherness. Encourage a community-oriented
-            mindset among all participants. Create an enjoyable and engaging
-            atmosphere. Ensure that all activities are designed to foster
-            enjoyment and engagement.
-          </p>
-
-          {/* Community Guidelines Checkbox */}
-          <div className="flex flex-col">
-            <div className="flex gap-2">
-              <input
-                type="checkbox"
-                {...register("guideline1", {
-                  required: "Check the box to proceed",
-                })}
-                className="mr-2"
-              />
-              <div className="flex flex-col gap-1">
-                <p className="text-md text-gray-200">Community Guidelines </p>
-                <p className="text-sm text-gray-400">
-                  I, the undersigned, agree to: • Abide by the guidelines and
-                  values outlined above. • Engage in all activities with a
-                  respectful and open-minded attitude. • Communicate openly and
-                  honestly with event organizers and fellow participants. •
-                  Respect the boundaries and comfort levels of others. • Refrain
-                  from any behavior that could cause harm or discomfort to
-                  others. • Be punctual and respect the event schedule. • Leave
-                  all spaces used during the event in better condition than I
-                  found them. • Maintain confidentiality of any personal
-                  information shared during the event.
-                </p>
-              </div>
-            </div>
-            {errors.guideline1 && (
-              <div className="flex items-center gap-1">
-                <MdError className="text-red-700 text-sm" />
-                <p className="text-red-500 text-sm">
-                  {errors.guideline1.message}
-                </p>
-              </div>
-            )}
-          </div>
-
-          <p className="text-md text-gray-300">
-            Thank you for your commitment to creating a positive and respectful
-            event experience for all. We look forward to sharing this time with
-            you.
-          </p>
-
-          <span className="h-[1px] w-full bg-gray-600"></span>
-
-          {/* Photo & Video Consent Radio Buttons */}
-          <div className="flex flex-col gap-y-1">
-            <p className="text-lg text-gray-200">Photo & Video Consent *</p>
-            <p className="text-sm text-gray-500">
-              We'll have a filmmaker & photographer capturing this experience.
-              Content captured may be used to create a recap video...
-            </p>
-            <label className="flex mt-2 items-center w-32 px-4 py-2 rounded-xl border-[1px] border-gray-700 bg-[#373d45]">
-              <input
-                type="radio"
-                value="yes"
-                {...register("Photo", {
-                  required: "Photo consent selection is required",
-                })}
-                className="mr-2"
-              />
-              Yes
-            </label>
-
-            <label className="flex mt-2 items-center w-32 px-4 py-2 rounded-xl border-[1px] border-gray-700 bg-[#373d45]">
-              <input
-                type="radio"
-                value="no"
-                {...register("Photo", {
-                  required: "Photo consent selection is required",
-                })}
-                className="mr-2"
-              />
-              No
-            </label>
-
-            {errors.Photo && (
-              <div className="flex items-center gap-2 mt-2">
-                <MdError className="text-red-700 text-sm" />
-                <p className="text-red-500 text-sm">{errors.Photo.message}</p>
-              </div>
-            )}
-          </div>
-
-          <p className="text-2xl text-gray-200 font-semibold">Thank you.</p>
-          <p className="text-md text-gray-300">
-            Thank you for your commitment to creating a positive and respectful
-            event experience for all. We look forward to sharing this time with
-            you.
-          </p>
-
-          <button
-            type="submit"
-            className="rounded-3xl text-gray-100 px-4 py-2 bg-[#6D6049] hover:border-2 hover:border-white"
-          >
-            Submit
-          </button>
-        </form>
-      )}
+     
+     {currentStep===5 && (
+       <form
+       onSubmit={handleSubmit(onNext_5)}
+       className="py-16 my-4 px-8 rounded-2xl  bg-[#333940] w-1/2 flex flex-col items-center justify-center gap-8"
+     >
+       <p className="text-4xl font-extrabold  text-gray-200">Guidelines and Values</p>
+ 
+       {/* Text with Show More functionality */}
+       <div className="text-md text-gray-200">
+         {showFullText ? (
+           <p>
+             These are ways of operating that we are in agreement of. We model
+             the world we want to create together. A core principle of Earth One
+             is regenerosity — the recognition that generosity begets generosity.
+             Our central purpose here is initiating cycles of regenerosity that
+             ripple through our communities, cultures and beyond. We believe in
+             the practice of devoting one's gifts in service of the whole. Our
+             gatherings make space for co-creation and co-development, constantly
+             learning from one another's mastery while we combine our gifts
+             through collective action. We are dedicated to creating a safe,
+             respectful, and enriching environment for all participants. By
+             signing this consent form, you agree to uphold the following
+             guidelines and values: Open-Mindedness, Curiosity & Learning:
+             Embrace diversity in perspectives, experiences, and expressions. Be
+             willing to engage with ideas, world views, and practices that may be
+             new or different to you. Approach interactions and activities with
+             an inquisitive and eager mindset. Seek to learn and understand more
+             about yourself and others. Encourage continuous learning and
+             development. Inclusivity & Collaboration: Ensure that everyone feels
+             welcome and represented. Strive to include all voices and
+             perspectives. Foster teamwork and cooperative efforts. Work together
+             to create a positive and inclusive atmosphere. Set the intention to
+             meet new collaborators and form unlikely partnerships. Integrity, & 
+             Consent: Value all participants and their contributions. Treat
+             everyone with dignity and honor. Earth One has a zero tolerance
+             policy for any form of sexual harassment. The way we treat ourselves
+             and others in intimate spaces is a reflection of how we show up in
+             the world. Act with honesty and sincerity. Uphold your personal and
+             professional commitments and be accountable for your actions.
+             Respect & Consideration: This includes punctuality. Respect the time
+             and schedules of others. Everything is opt-in, but please honor the
+             commitments you make and show up with full attention and presence to
+             the moments you choose. Respect the privacy and confidentiality of
+             all participants. Do not share personal or proprietary information
+             without consent. Contribution & Generosity: Share your time,
+             attention, and resources freely and with kindness. Offer support and
+             encouragement to fellow participants. Uplift each other in our
+             shared mission for Earth and humanity with the mindset that we are
+             all on the same team and we know we need to break down silos as well
+             as systems of competition. Environmental Stewardship: Leave all
+             spaces better than you found them. Be mindful of cleanliness, order,
+             and the impact of your actions on the environment. Promote
+             environmentally friendly practices. Community Spirit & Fun: Foster a
+             sense of belonging and togetherness. Encourage a community-oriented
+             mindset among all participants. Create an enjoyable and engaging
+             atmosphere. Ensure that all activities are designed to foster
+             enjoyment and engagement.
+           </p>
+         ) : (
+           <p>
+             These are ways of operating that we are in agreement of. We model
+             the world we want to create together. A core principle of Earth One
+             is regenerosity — the recognition that generosity begets generosity.
+             Our central purpose here is initiating cycles of regenerosity that...
+           </p>
+         )}
+ 
+         <button
+           type="button"
+           onClick={handleToggleText}
+           className="text-blue-400 mt-2"
+         >
+           {showFullText ? "Show Less" : "Show More"}
+         </button>
+       </div>
+ 
+       {/* Community Guidelines Checkbox */}
+       <div className="flex flex-col">
+         <div className="flex gap-2">
+           <input
+             type="checkbox"
+             {...register("guideline1", {
+               required: "Check the box to proceed",
+             })}
+             className="mr-2"
+           />
+           <div className="flex flex-col gap-1">
+             <p className="text-md font-semibold text-gray-100">Community Guidelines </p>
+             <p className="text-sm text-gray-200">
+               I, the undersigned, agree to: • Abide by the guidelines and
+               values outlined above. • Engage in all activities with a
+               respectful and open-minded attitude.
+               event.
+             </p>
+           </div>
+         </div>
+         {errors.guideline1 && (
+           <div className="flex items-center gap-1">
+             <MdError className="text-red-700 text-sm" />
+             <p className="text-red-500 text-sm">
+               {errors.guideline1.message}
+             </p>
+           </div>
+         )}
+       </div>
+ 
+       {/* Photo & Video Consent */}
+       <div className="flex flex-col gap-y-1">
+         <p className="text-lg text-gray-200">Photo & Video Consent *</p>
+         <p className="text-sm text-gray-500">
+           We'll have a filmmaker & photographer capturing this experience.
+           Content captured may be used to create a recap video...
+         </p>
+         <div className="flex flex-row gap-2">
+         <label className="flex mt-2 items-center w-32 px-4 py-2 rounded-xl border-[1px] border-gray-700 bg-[#4f565f]">
+           <input
+             type="radio"
+             value="yes"
+             {...register("Photo", {
+               required: "Photo consent selection is required",
+             })}
+             className="mr-2"
+           />
+           Yes
+         </label>
+ 
+         <label className="flex mt-2 items-center w-32 px-4 py-2 rounded-xl border-[1px] border-gray-700 bg-[#4f565f]">
+           <input
+             type="radio"
+             value="no"
+             {...register("Photo", {
+               required: "Photo consent selection is required",
+             })}
+             className="mr-2"
+           />
+           No
+         </label>
+         </div>
+ 
+         {errors.Photo && (
+           <div className="flex items-center gap-2 mt-2">
+             <MdError className="text-red-700 text-sm" />
+             <p className="text-red-500 text-sm">{errors.Photo.message}</p>
+           </div>
+         )}
+       </div>
+ 
+       <p className="text-2xl text-gray-200 font-semibold">Thank you.</p>
+ 
+       <button
+         type="submit"
+         className="rounded-3xl text-gray-100 px-4 py-2 bg-[#6D6049] hover:border-2 hover:border-white"
+       >
+         Submit
+       </button>
+     </form>
+     )}
 
       {isPopupVisible && (
-        <div className="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg">
-            <p className="text-lg font-semibold text-gray-800 mb-4">
-              Your data already exists. Do you want to fill the form with your
-              stored data?
-            </p>
-            <div className="flex justify-around">
-              <button
-                onClick={handlePopupYes}
-                className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors duration-200"
-              >
-                Yes
-              </button>
-              <button
-                onClick={handlePopupNo}
-                className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-colors duration-200"
-              >
-                No
-              </button>
-            </div>
-          </div>
-        </div>
+       <div className="fixed inset-0 bg-gray-00 bg-opacity-75 flex justify-center items-center z-50">
+       <div className="bg-gray-800 text-gray-100 p-8 rounded-lg shadow-xl transform transition-transform duration-300 scale-95 hover:scale-100 w-full max-w-[30rem]">
+         <p className="text-xl font-semibold text-gray-100 mb-6 text-center">
+           Your data already exists. Do you want to fill the form with your stored data?
+         </p>
+         <div className="flex justify-around mt-6 gap-4">
+           <button
+             onClick={handlePopupYes}
+             className="bg-green-600 text-white px-8 py-4 rounded-lg hover:bg-green-700 focus:outline-none transition-colors duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl"
+           >
+             Yes
+           </button>
+           <button
+             onClick={handlePopupNo}
+             className="bg-red-600 text-white px-8 py-4 rounded-lg hover:bg-red-700 focus:outline-none transition-colors duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl"
+           >
+             No
+           </button>
+         </div>
+       </div>
+     </div>
+     
       )}
     </div>
   );

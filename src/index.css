@@ -3,4 +3,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@keyframes scroll {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-100%);
+    }
+  }
+  
+  .animate-scroll-content {
+    animation: scroll 10s linear infinite; 
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
 
+  .step-content {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  
+  .step-content.active {
+    opacity: 1;
+  }
+  
